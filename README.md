@@ -1,13 +1,9 @@
 # Luisa Rosa
 # Operation Systems Final Project - 12/14/2023
 
----
-
 ## Reasoning → Option #3: Write a Linux Kernel Module
 
 * In the Linux environment, the kernel's features can be dynamically expanded during runtime. This means I can add functionality through the Linux kernel using modules while the Operation System runs. A piece of code added to the kernel is called a module.
-
----
 
 ## Designing the Kernel module in C:
 * The Kernel is responsible for maintaining all the essential abstractions of the operating system, including such things as virtual memory and process.
