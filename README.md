@@ -10,7 +10,7 @@
 ## Designing the Kernel module in C:
 * The Kernel is responsible for maintaining all the essential abstractions of the operating system, including such things as virtual memory and process.
 * Pieces of the code can be loaded and unloaded into the kernel upon demand.
-* My module creates a pseudo-file (named proc/jiffies) to allow users to obtain the current value of the kernel’s jiffies global variable.
+* My module creates a pseudo-file (named proc/seconds) to allow users to obtain the elapsed seconds of the kernel’s jiffies global variable from when the file is first initialized until the module is exited.
 * The variables are set to zero during system startup.
 * The Linux kernel keeps track of the number of time interrupts.
 * This value is stored in the jiffies variable declared in the file.
