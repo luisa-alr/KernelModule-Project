@@ -2,6 +2,7 @@
 //Operation Systems Final Project - 12/14/2023
 //This file creates a kernel module that interacts with the /proc file system in Linux. The module calculates and reports elapsed kernel jiffies in seconds.
 
+#include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/jiffies.h>
 #include <linux/module.h>
@@ -31,26 +32,26 @@ static int proc_sec_open(struct inode *inode, struct file *file) {
 }
 
 //function that initializes the file operations for the /proc/seconds file
-static const struct proc_ops proc_sec_fops = {
-    .proc_owner = THIS_MODULE,
-    .proc_open = proc_sec_open,
-    .proc_read = seq_read,
-    .proc_lseek = seq_lseek,
-    .proc_release = single_release,
+static const struct proc_ops seconds_proc_fops = {
+    .owner = THIS_MODULE,
+    .open = seconds_proc_open,
+    .read = seq_read,
+    .llseek = seq_lseek,
+    .release = single_release,
 };
 
 //initialize the starting jiffies variable that holds the current number of jiffies when module is initialized
 static int __init seconds_init(void) {
     start = jiffies;
     //create proc/seconds file
-    proc_create(PROC_FILENAME, 0, NULL, &proc_sec_init);
+    proc_create(PROC_FILENAME, 0, NULL, &seconds_proc_fops);
     return 0;
 }
 
 //remove proc/seconds file entries
-static void __exit seconds_exit(void) {
+static void seconds_exit(void) {
     remove_proc_entry(PROC_FILENAME, NULL);
 }
 
 module_init(seconds_init);
-module_exit(simple_exit);
+module_exit(seconds_exit);
