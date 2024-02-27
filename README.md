@@ -1,5 +1,5 @@
 # Luisa Rosa
-# Operation Systems Final Project - 12/14/2023
+# Operation Systems Project - 12/14/2023
 
 ## Reasoning → Option #3: Write a Linux Kernel Module
 
